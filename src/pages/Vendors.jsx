@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 import apiService from "../api/api";
 import { useArea } from "../context/AreaContext";
 import "./css/Vendors.css";
+import { FaEdit, FaTrash, FaSave, FaTimes } from "react-icons/fa";
 
 function Vendors() {
   const { area } = useArea();
   const [vendors, setVendors] = useState([]);
   const [areas, setAreas] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [editingId, setEditingId] = useState(null);
+  const [editVendor, setEditVendor] = useState({});
 
   const [newVendor, setNewVendor] = useState({
     name: "",
@@ -70,10 +74,10 @@ function Vendors() {
 
   // ✅ Handle image selection
   const handleFileChange = (e) => {
-    setVendorImage(e.target.files[0]); // <-- This must be a File object
+    setVendorImage(e.target.files[0]);
   };
 
-  // ✅ Submit new vendor (multipart/form-data)
+  // ✅ Submit new vendor
   const handleAddVendor = async (e) => {
     e.preventDefault();
     try {
@@ -83,7 +87,7 @@ function Vendors() {
       });
 
       if (vendorImage) {
-        formData.append("image", vendorImage); // <-- Must append File object, not string
+        formData.append("image", vendorImage);
       }
 
       await apiService({
@@ -107,9 +111,53 @@ function Vendors() {
       });
       setVendorImage(null);
 
-      fetchVendors(); // refresh list
+      fetchVendors();
     } catch (err) {
       console.error("Error adding vendor:", err);
+    }
+  };
+
+  // ✅ Delete vendor
+  const handleDeleteVendor = async (id) => {
+    try {
+      await apiService({
+        url: `/api/vendors/${id}`,
+        method: "DELETE",
+      });
+      setVendors((prev) => prev.filter((v) => v.id !== id));
+    } catch (err) {
+      console.error("Error deleting vendor:", err);
+    }
+  };
+
+  // ✅ Enable edit mode
+  const handleEditVendor = (vendor) => {
+    setEditingId(vendor.id);
+    setEditVendor({ ...vendor });
+  };
+
+  // ✅ Handle edit input
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditVendor((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // ✅ Update vendor
+  const handleUpdateVendor = async (id) => {
+    try {
+      await apiService({
+        url: `/api/vendors/vendor/status`,
+        method: "PATCH",
+        data: editVendor,
+      });
+
+      setVendors((prev) =>
+        prev.map((v) => (v.id === id ? { ...v, ...editVendor } : v))
+      );
+      setEditingId(null);
+      setEditVendor({});
+    } catch (err) {
+      console.error("Error updating vendor:", err);
     }
   };
 
@@ -236,19 +284,97 @@ function Vendors() {
               <th>Area</th>
               <th>Prep Time</th>
               <th>Open</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {vendors.map((v) => (
               <tr key={v.id}>
                 <td>{v.id}</td>
-                <td>{v.name}</td>
-                <td>{v.type}</td>
-                <td>{v.phone}</td>
-                <td>{v.address}</td>
+                <td>
+                  {editingId === v.id ? (
+                    <input
+                      name="name"
+                      value={editVendor.name}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    v.name
+                  )}
+                </td>
+                <td>
+                  {v.type}
+                </td>
+                <td>
+                  {editingId === v.id ? (
+                    <input
+                      name="phone"
+                      value={editVendor.phone}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    v.phone
+                  )}
+                </td>
+                <td>
+                  {editingId === v.id ? (
+                    <input
+                      name="address"
+                      value={editVendor.address}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    v.address
+                  )}
+                </td>
                 <td>{v.service_area}</td>
-                <td>{v.prep_time} min</td>
+                <td>
+                  {editingId === v.id ? (
+                    <input
+                      name="prep_time"
+                      value={editVendor.prep_time}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    `${v.prep_time} min`
+                  )}
+                </td>
                 <td>{v.is_open ? "✅" : "❌"}</td>
+
+                <td>
+                  {editingId === v.id ? (
+                    <>
+                      <button
+                        onClick={() => handleUpdateVendor(v.id)}
+                        className="action-btn save"
+                      >
+                        <FaSave /> Save
+                      </button>
+                      <button
+                        onClick={() => setEditingId(null)}
+                        className="action-btn cancel"
+                      >
+                        <FaTimes /> Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleEditVendor(v)}
+                        className="action-btn edit"
+                      >
+                        <FaEdit /> Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteVendor(v.id)}
+                        className="action-btn delete"
+                      >
+                        <FaTrash /> Delete
+                      </button>
+                    </>
+                  )}
+                </td>
+
               </tr>
             ))}
           </tbody>
