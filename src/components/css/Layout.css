@@ -1,0 +1,133 @@
+/* styles.css */
+
+/* Layout container */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;   /* ✅ take full width */
+  margin: 0;     /* ✅ remove unwanted margins */
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* Sidebar (15%) */
+.sidebar {
+  flex: 0 0 15%;   /* ✅ fixed 15% width */
+  background: #1e293b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Sidebar Title */
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #facc15; /* yellow accent */
+}
+
+/* Sidebar Nav */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 12px 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: block;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background: #334155;
+  color: #fff;
+}
+
+/* Main content (85%) */
+.main-content {
+  flex: 0 0 85%;  /* ✅ fixed 85% width */
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+}
+
+/* Topbar */
+.topbar {
+  background: #f1f5f9;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.topbar button {
+  background: #07f31a;
+  color: black;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.topbar button:hover {
+  background: #1d4ed8;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3498db;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.current-area span {
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.change-area-btn {
+  background: white;
+  color: #f5f115;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.change-area-btn:hover {
+  background: #ecf0f1;
+}

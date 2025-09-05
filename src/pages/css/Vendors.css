@@ -1,0 +1,64 @@
+.vendors-container {
+    padding: 20px;
+  }
+  
+  .page-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .vendor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .form-row input,
+  .form-row select {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .submit-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #1e40af;
+  }
+  
+  /* Table */
+  .vendor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .vendor-table th,
+  .vendor-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .vendor-table th {
+    background: #f3f4f6;
+    font-weight: bold;
+  }
+  

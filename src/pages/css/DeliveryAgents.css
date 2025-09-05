@@ -1,0 +1,70 @@
+.agents-container {
+    padding: 20px;
+  }
+  
+  .page-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .agent-form {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .agent-form input,
+  .agent-form select {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .submit-btn {
+    background: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .submit-btn:hover {
+    background: #0056b3;
+  }
+  
+  .search-row {
+    margin-bottom: 10px;
+  }
+  
+  .search-row input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .agent-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .agent-table th,
+  .agent-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .agent-table th {
+    background: #f1f1f1;
+  }
+  
