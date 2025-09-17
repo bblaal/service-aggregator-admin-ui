@@ -24,7 +24,8 @@ function hideSpinner() {
 }
 
 const apiClient = axios.create({
-   baseURL: 'https://service-aggregator-backend.onrender.com',
+  baseURL: process.env.BASE_URL
+   // baseURL: 'https://service-aggregator-backend.onrender.com',
   // baseURL: 'http://localhost:4000',
 });
 
