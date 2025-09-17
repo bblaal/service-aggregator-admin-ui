@@ -81,4 +81,21 @@
     border-radius: 6px;
     cursor: pointer;
   }
+
+  .form-section {
+    display: flex;
+    gap: 20px;         /* space between forms */
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .menu-form {
+    flex: 1;           /* both take equal width */
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+  
   

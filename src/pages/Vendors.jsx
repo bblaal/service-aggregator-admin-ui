@@ -284,6 +284,7 @@ function Vendors() {
               <th>Area</th>
               <th>Prep Time</th>
               <th>Open</th>
+              <th></th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -341,6 +342,14 @@ function Vendors() {
                 </td>
                 <td>{v.is_open ? "✅" : "❌"}</td>
 
+                <td>{editingId === v.id ? (<input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />) : ("")
+                }
+                </td>
                 <td>
                   {editingId === v.id ? (
                     <>
