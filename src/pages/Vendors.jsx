@@ -337,7 +337,15 @@ function Vendors() {
                       placeholder="Image URL (cloud)"
                     />
                   ) : (
-                    ""
+                    <img
+                      src={v.image_url}
+                      alt={v.name}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                      }}
+                    />
                   )}
                 </td>
 
