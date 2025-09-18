@@ -25,9 +25,10 @@ function Vendors() {
     is_open: true,
     prep_time: "",
     service_radius: "",
+    image_url: "", // <-- added image_url as string
   });
 
-  const [vendorImage, setVendorImage] = useState(null);
+  // removed vendorImage state (no file uploads)
 
   // ✅ Fetch vendors for selected area
   const fetchVendors = async () => {
@@ -64,6 +65,7 @@ function Vendors() {
   useEffect(() => {
     fetchAreas();
     fetchVendors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [area]);
 
   // ✅ Handle vendor form input
@@ -72,29 +74,18 @@ function Vendors() {
     setNewVendor((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Handle image selection
-  const handleFileChange = (e) => {
-    setVendorImage(e.target.files[0]);
-  };
+  // removed handleFileChange (no files)
 
-  // ✅ Submit new vendor
+  // ✅ Submit new vendor (send JSON payload, image_url is a string)
   const handleAddVendor = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      Object.entries(newVendor).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-
-      if (vendorImage) {
-        formData.append("image", vendorImage);
-      }
-
+      // send JSON body (backend expects image_url string in req.body)
       await apiService({
         url: "/api/vendors",
         method: "POST",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+        data: newVendor,
+        headers: { "Content-Type": "application/json" },
       });
 
       setNewVendor({
@@ -108,8 +99,8 @@ function Vendors() {
         is_open: true,
         prep_time: "",
         service_radius: "",
+        image_url: "",
       });
-      setVendorImage(null);
 
       fetchVendors();
     } catch (err) {
@@ -133,7 +124,7 @@ function Vendors() {
   // ✅ Enable edit mode
   const handleEditVendor = (vendor) => {
     setEditingId(vendor.id);
-    setEditVendor({ ...vendor });
+    setEditVendor({ ...vendor }); // ensures image_url (if present) is available
   };
 
   // ✅ Handle edit input
@@ -142,13 +133,14 @@ function Vendors() {
     setEditVendor((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Update vendor
+  // ✅ Update vendor (backend expects JSON with id + fields, including image_url)
   const handleUpdateVendor = async (id) => {
     try {
       await apiService({
         url: `/api/vendors/vendor/status`,
         method: "PATCH",
         data: editVendor,
+        headers: { "Content-Type": "application/json" },
       });
 
       setVendors((prev) =>
@@ -246,20 +238,14 @@ function Vendors() {
         </div>
 
         <div className="form-row">
+          {/* REPLACED file input with image_url text input */}
           <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleFileChange}
+            type="text"
+            name="image_url"
+            value={newVendor.image_url}
+            onChange={handleChange}
+            placeholder="Image URL (cloud storage)"
           />
-
-          {/* {vendorImage && (
-            <img
-              src={URL.createObjectURL(vendorImage)}
-              alt="preview"
-              style={{ width: "60px", height: "60px", marginLeft: "10px" }}
-            />
-          )} */}
         </div>
 
         <div className="form-row">
@@ -296,21 +282,19 @@ function Vendors() {
                   {editingId === v.id ? (
                     <input
                       name="name"
-                      value={editVendor.name}
+                      value={editVendor.name || ""}
                       onChange={handleEditChange}
                     />
                   ) : (
                     v.name
                   )}
                 </td>
-                <td>
-                  {v.type}
-                </td>
+                <td>{v.type}</td>
                 <td>
                   {editingId === v.id ? (
                     <input
                       name="phone"
-                      value={editVendor.phone}
+                      value={editVendor.phone || ""}
                       onChange={handleEditChange}
                     />
                   ) : (
@@ -321,7 +305,7 @@ function Vendors() {
                   {editingId === v.id ? (
                     <input
                       name="address"
-                      value={editVendor.address}
+                      value={editVendor.address || ""}
                       onChange={handleEditChange}
                     />
                   ) : (
@@ -333,7 +317,7 @@ function Vendors() {
                   {editingId === v.id ? (
                     <input
                       name="prep_time"
-                      value={editVendor.prep_time}
+                      value={editVendor.prep_time || ""}
                       onChange={handleEditChange}
                     />
                   ) : (
@@ -342,14 +326,21 @@ function Vendors() {
                 </td>
                 <td>{v.is_open ? "✅" : "❌"}</td>
 
-                <td>{editingId === v.id ? (<input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />) : ("")
-                }
+                <td>
+                  {editingId === v.id ? (
+                    // REPLACED file input with image_url text input for edit
+                    <input
+                      type="text"
+                      name="image_url"
+                      value={editVendor.image_url || ""}
+                      onChange={handleEditChange}
+                      placeholder="Image URL (cloud)"
+                    />
+                  ) : (
+                    ""
+                  )}
                 </td>
+
                 <td>
                   {editingId === v.id ? (
                     <>
@@ -360,7 +351,10 @@ function Vendors() {
                         <FaSave /> Save
                       </button>
                       <button
-                        onClick={() => setEditingId(null)}
+                        onClick={() => {
+                          setEditingId(null);
+                          setEditVendor({});
+                        }}
                         className="action-btn cancel"
                       >
                         <FaTimes /> Cancel
@@ -383,7 +377,6 @@ function Vendors() {
                     </>
                   )}
                 </td>
-
               </tr>
             ))}
           </tbody>
