@@ -270,7 +270,7 @@ function Vendors() {
               <th>Area</th>
               <th>Prep Time</th>
               <th>Open</th>
-              <th></th>
+              <th>Image</th>
               <th>Actions</th>
             </tr>
           </thead>
