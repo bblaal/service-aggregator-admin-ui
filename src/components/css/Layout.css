@@ -131,3 +131,13 @@
 .change-area-btn:hover {
   background: #ecf0f1;
 }
+
+.logo-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 120px;   /* adjust as needed */
+  height: auto;
+}

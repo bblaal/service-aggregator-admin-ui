@@ -11,6 +11,11 @@ const Layout = () => {
   return (
     <div className="layout">
       <aside className="sidebar">
+        {/* ✅ Logo */}
+        <div className="logo-container">
+          <img src="/logo.png" alt="Logo" className="logo" />
+        </div>
+
         <h2>Admin Panel</h2>
         <nav>
           <ul>
@@ -27,15 +32,15 @@ const Layout = () => {
 
       <main className="main-content">
         <header className="topbar">
-        <div className="current-area">
-          📍 Current Area: <span>{area || "Not Selected"}</span>
-        </div>
+          <div className="current-area">
+            📍 Current Area: <span>{area || "Not Selected"}</span>
+          </div>
           <button onClick={() => setShowAreaModal(true)}>
             Change Area
           </button>
         </header>
         <section className="content">
-          <Outlet /> {/* ✅ this will render Dashboard/Orders/etc */}
+          <Outlet /> {/* ✅ Dashboard/Orders/etc render here */}
         </section>
       </main>
 
