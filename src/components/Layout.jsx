@@ -15,6 +15,7 @@ const Layout = () => {
         <nav>
           <ul>
             <li><Link to="/">Dashboard</Link></li>
+            <li><Link to="/service-area">Service Area</Link></li>
             <li><Link to="/global-menu">Global Menu</Link></li>
             <li><Link to="/vendors">Vendors</Link></li>
             <li><Link to="/delivery-agents">Delivery Agents</Link></li>

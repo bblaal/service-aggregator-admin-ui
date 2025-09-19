@@ -48,7 +48,7 @@ function DeliveryAgents() {
         method: "GET",
       });
       if (data && data.length > 0) {
-        setAreas(data);
+        setAreas(data.map(item => item.area));
       }
     } catch (err) {
       console.error("❌ Failed to fetch areas:", err.message);

@@ -10,6 +10,7 @@ import DeliveryAgents from "./pages/DeliveryAgents";
 import Orders from "./pages/Orders";
 import GlobalMenu from "./pages/GlobalMenu";
 import Reviews from "./pages/Reviews";
+import ServiceArea from "./pages/ServiceArea";
 
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import { useArea, AreaProvider } from "./context/AreaContext";
@@ -45,6 +46,7 @@ const AppRoutes = () => {
         <Route path="orders" element={<Orders />} />
         <Route path="global-menu" element={<GlobalMenu />} />
         <Route path="reviews" element={<Reviews />} />
+        <Route path="service-area" element={<ServiceArea />} />
       </Route>
 
       {/* Separate blocking route for area selection */}

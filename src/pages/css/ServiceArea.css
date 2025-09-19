@@ -1,0 +1,131 @@
+/* ===== ServiceArea.css ===== */
+
+.servicearea-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2d3436;
+    text-align: center;
+  }
+  
+  /* === Form Section === */
+  .servicearea-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .servicearea-form h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #374151;
+  }
+  
+  .servicearea-form input {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .servicearea-form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .form-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  .form-buttons button[type="submit"] {
+    background: #2563eb;
+    color: #fff;
+  }
+  
+  .form-buttons button[type="submit"]:hover {
+    background: #1e40af;
+  }
+  
+  .clear-btn {
+    background: #f3f4f6;
+    color: #374151;
+  }
+  
+  .clear-btn:hover {
+    background: #e5e7eb;
+  }
+  
+  /* === Search === */
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .search-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  }
+  
+  /* === Table === */
+  .area-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  .area-table th,
+  .area-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .area-table th {
+    background: #f3f4f6;
+    font-weight: 600;
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  .area-table tr:nth-child(even) {
+    background: #fafafa;
+  }
+  
+  .area-table td {
+    font-size: 14px;
+    color: #374151;
+  }
+  

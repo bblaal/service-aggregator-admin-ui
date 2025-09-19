@@ -21,9 +21,10 @@ const AreaModal = ({ onClose }) => {
         });
 
         if (data && data.length > 0) {
-          setAreas(data);
-          setSelected(data[0]); // ✅ default first area
+          setAreas(data.map(item => item.area));
+          setSelected(data[0].area); // ✅ default first area as string
         }
+        
       } catch (err) {
         console.error("❌ Failed to fetch areas:", err.message);
       } finally {
@@ -36,14 +37,12 @@ const AreaModal = ({ onClose }) => {
 
   const handleSubmit = () => {
     if (selected) {
-      setArea(selected);
-
+      setArea(selected);  // ✅ always a string now
+  
       if (onClose) {
-        // Case 2: from Layout "Change Area"
         onClose();
         navigate("/");
       } else {
-        // Case 1: Post login
         navigate("/");
       }
     }

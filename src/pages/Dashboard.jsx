@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import apiService from "../api/api";
+import { useArea } from "../context/AreaContext";
 import "./css/Dashboard.css";
 
 function Dashboard() {
+  const { area } = useArea();
   const [vendors, setVendors] = useState([]);
   const [agents, setAgents] = useState([]);
   const [areas, setAreas] = useState([]);
@@ -27,16 +29,16 @@ function Dashboard() {
         url: "/api/fetchServiceArea",
         method: "GET",
       });
-      setAreas(areasData || []);
+      setAreas(areasData.map(item => item.area) || []);
 
       const vendorsData = await apiService({
-        url: "/api/vendors/vendorsByArea?area=" + (areasData[0] || ""),
+        url: "/api/vendors/vendorsByArea?area=" + (area || ""),
         method: "GET",
       });
       setVendors(vendorsData || []);
 
       const agentsData = await apiService({
-        url: "/api/delivery/agentsByArea?area=" + (areasData[0] || ""),
+        url: "/api/delivery/agentsByArea?area=" + (area || ""),
         method: "GET",
       });
       setAgents(agentsData || []);
