@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await apiService({
-        url: "/api/users/auth/admin",
+        url: "/api/auth/admin",
         method: "POST",
         data: { username, password },
       });
