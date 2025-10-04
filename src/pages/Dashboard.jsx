@@ -32,7 +32,7 @@ function Dashboard() {
       setAreas(areasData.map(item => item.area) || []);
 
       const vendorsData = await apiService({
-        url: "/api/vendors/vendorsByArea?area=" + (area || ""),
+        url: "/api/vendors/vendorsByArea?area=" + (area || "") + "&status=APPROVED",
         method: "GET",
       });
       setVendors(vendorsData || []);
