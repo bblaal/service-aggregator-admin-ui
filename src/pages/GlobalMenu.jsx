@@ -163,6 +163,7 @@ function GlobalMenu() {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Category</th>
             <th>Image</th>
           </tr>
         </thead>
@@ -171,6 +172,7 @@ function GlobalMenu() {
             displayedItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
+                <td>{item.category}</td>
                 <td>{item.name}</td>
                 <td>
                   {item.imageurl ? (
