@@ -16,6 +16,7 @@ import { useAuth, AuthProvider } from "./context/AuthContext";
 import { useArea, AreaProvider } from "./context/AreaContext";
 
 import './App.css';
+import Services from "./pages/Services";
 
 // ✅ PrivateRoute wrapper
 const PrivateRoute = ({ children }) => {
@@ -47,6 +48,7 @@ const AppRoutes = () => {
         <Route path="global-menu" element={<GlobalMenu />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="service-area" element={<ServiceArea />} />
+        <Route path="services" element={<Services />} />
       </Route>
 
       {/* Separate blocking route for area selection */}

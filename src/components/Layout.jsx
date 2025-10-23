@@ -25,7 +25,9 @@ const Layout = () => {
             <li><Link to="/vendors">Vendors</Link></li>
             <li><Link to="/delivery-agents">Delivery Agents</Link></li>
             <li><Link to="/orders">Orders</Link></li>
+            <li><Link to="/services">Local Services</Link></li>
             <li><Link to="/reviews">Reviews</Link></li>
+            
           </ul>
         </nav>
       </aside>
