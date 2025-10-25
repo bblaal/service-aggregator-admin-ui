@@ -99,8 +99,8 @@ function Services() {
                         required
                     >
                         <option value="">Select Category</option>
-                        {Object.keys(constants.services).map((key) => (
-                            <option key={key} value={key}>
+                        {Object.keys(constants.services).map((key, value) => (
+                            <option key={key} value={value}>
                                 {constants.services[key]}
                             </option>
                         ))}
